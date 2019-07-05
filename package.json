@@ -15,12 +15,14 @@
   },
   "husky": {
     "hooks": {
-       "pre-commit": "export CI=true && npm run build-ts && lint-staged && npm test",
-       "pre-push": "export CI=true && npm run build-ts && lint-staged && npm test"
+      "pre-commit": "export CI=true && npm run build-ts && lint-staged && npm test",
+      "pre-push": "export CI=true && npm run build-ts && lint-staged && npm test"
     }
   },
   "lint-staged": {
-     "*.ts": ["tslint -c tslint.json"]
+    "*.ts": [
+      "tslint -c tslint.json"
+    ]
   },
   "author": "",
   "license": "ISC",
