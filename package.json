@@ -1,0 +1,44 @@
+{
+  "name": "authorization",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build-ts": "tsc",
+    "start": "npm run serve",
+    "serve": "npm run build-ts && node dist/server.js",
+    "watch-node": "nodemon dist/server.js",
+    "watch-ts": "tsc -w",
+    "lint": "tslint -c tslint.json 'src/**/*.ts'",
+    "test": "echo \"Success: no test specified\" && exit 0",
+    "watch": "npm run build-ts && concurrently 'npm:watch-ts' 'npm:watch-node'"
+  },
+  "husky": {
+    "hooks": {
+       "pre-commit": "export CI=true && npm run build-ts && lint-staged && npm test",
+       "pre-push": "export CI=true && npm run build-ts && lint-staged && npm test"
+    }
+  },
+  "lint-staged": {
+     "*.ts": ["tslint -c tslint.json"]
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^4.1.1",
+    "husky": "^3.0.0",
+    "lint-staged": "^9.0.2",
+    "nodemon": "^1.19.1",
+    "prettier": "^1.18.2",
+    "tslint": "^5.18.0",
+    "tslint-config-prettier": "^1.18.0",
+    "tslint-plugin-prettier": "^2.0.1",
+    "typescript": "^3.5.2"
+  },
+  "dependencies": {
+    "@types/cors": "^2.8.5",
+    "@types/express": "^4.17.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1"
+  }
+}
